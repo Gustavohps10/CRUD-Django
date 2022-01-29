@@ -9,7 +9,7 @@
 
 # :page_with_curl: Descrição
 <p>
-Um "CRUD" simples contruído com o framework Django
+Um "CRUD" simples construído com o framework Django
 </p>
 
 # :game_die: Funcionalidades
