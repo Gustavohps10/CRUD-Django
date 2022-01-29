@@ -1,0 +1,87 @@
+{% extends 'crud/base.html' %}
+{% load static %}
+
+{% block title %} 
+    Lista Categoria
+{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+<link rel="stylesheet" href="{% static 'css/dataTables.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="margin">
+        <div class="row">
+            <div id="man" class="col s12">
+              <div class="card material-table">
+                <div class="table-header">
+                  <span class="table-title valign-wrapper"><i class="material-icons left">library_books</i>Categorias</span>
+                  <div class="actions">
+                    <a class="search-toggle waves-effect btn-flat nopadding tooltipped" data-position="bottom" data-tooltip="Pesquisar"><i class="material-icons">search</i></a>
+                  </div>
+                </div>
+        <table id="tabela" class="centered highlight display compact">
+          <thead>
+            <tr>
+              <th class="hide-on-med-and-down">ID</th>
+              <th>NOME</th>
+              <th class="hide-on-med-and-down">RÓTULO</th>
+              <th>AÇÃO</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for c in categorias %}
+              <tr>
+                <td class="hide-on-med-and-down">{{c.id}}</td>
+                  <td>{{c.nome}}</td>
+                  <td class="hide-on-med-and-down">{{c.rotulo}}</td>
+                  <td>
+                      <a class="btn btn-small" href="{% url 'crud:editarCategoria' c.id %}"><i class="material-icons">edit</i></a>
+                      <a class="btn red waves-effect darken-1 btn-delete" href="{% url 'crud:deletarCategoria' c.id %}"><i class="material-icons">delete</i></a>
+                  </td>
+                  
+              </tr>
+              {% endfor %}
+          </tbody>
+        </table>
+        </div>
+            </div>
+          </div>
+</div>
+
+    {% endblock %}
+
+{% block scripts %}
+  <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="{% static 'js/dataTables.js' %}"></script>
+    <script>
+      $(document).ready(function(){
+
+//DataTables
+TabelaVeiculos = $('#tabela').DataTable({
+  "oLanguage": {
+    "sStripClasses": "",
+    "sSearch": "",
+    "sSearchPlaceholder": "Palavra-chave",
+    "sInfoFiltered": "",
+    "sInfoEmpty": "Sem Resultados",
+    "sEmptyTable": "Tabela vazia",
+    "sZeroRecords": "Nenhum resultado encontrado",
+    "sInfo": "Mostrando _START_-_END_ de _TOTAL_",
+    "sLengthMenu": '<span>Linhas por pagina:</span><select class="browser-default">' +
+      '<option value="10">10</option>' +
+      '<option value="20">20</option>' +
+      '<option value="30">30</option>' +
+      '<option value="40">40</option>' +
+      '<option value="50">50</option>' +
+      '<option value="-1">Todos</option>' +
+      '</select></div>'
+  },
+  bAutoWidth: false
+});
+});
+
+  </script>
+{% endblock %}

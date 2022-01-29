@@ -1,0 +1,43 @@
+{% extends 'crud/base.html' %}
+{% load static %}
+{% load materializecss %}
+
+{% block title %} 
+    Detalhes Jogo
+{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="margin">
+        <div class="container">
+            <div id="info-game-container">
+                <img src="
+                        {% if jogo.imagem %}
+                            {{ jogo.imagem.url }} 
+                        {% else %} 
+                            {% static 'img/no_image.jpg' %}
+                        {% endif %}">
+                <div id="info-game">
+                    <h1>{{jogo.nome}}</h1>
+                    <h3>Categoria: {{jogo.categoria}}</h3>
+                    <h3>Dispositivo: {{jogo.dispositivo}}</h3>
+                    <h3>Avaliação: {{jogo.avaliacao}}</h3>
+                    <h4>Comentário:</h4>
+                    <p>{{jogo.comentario}}</p>
+                    <div id="buttons-game">
+                        <a class="btn" href="{% url 'crud:editarJogo' jogo.id %}">EDITAR</a>
+                        <a class="btn right red darken-1 waves-effect" href="{% url 'crud:deletarJogo' jogo.id %}">EXCLUIR</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+{% endblock%}
+

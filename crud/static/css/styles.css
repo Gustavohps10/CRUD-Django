@@ -1,0 +1,117 @@
+#lista{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 210px));
+    gap: 10px;
+    justify-content: center;
+}
+#info-game-container{
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+}
+#info-game-container img{
+    width: 320px;
+    height: 500px;
+}
+
+#info-game h1{
+color: #8f8f8f;
+text-transform: uppercase;
+}
+
+.selected{
+    background-color: rgba(0,0,0,0.3);
+}
+.sidenav i {
+    color: rgba(0,0,0,0.54);
+}
+
+.sidenav .collapsible-header, .sidenav.fixed .collapsible-header{
+    padding: 0px 32px !important;
+}
+#lista .card-panel{
+    margin: 0px !important;
+}
+.sidenav .logo-container {
+    padding: 0 16px;
+    height: 64px;
+    line-height: 64px;
+    font-size: 24px;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    box-sizing: content-box;
+}
+
+.sidenav .logo-container i{
+    position: absolute !important;
+    top: 10px !important;
+    color: #000 !important;
+    font-size: 35px;
+}
+
+.sidenav .logo-container span{
+    margin-left: 50px !important;
+}
+
+
+.container{
+    width: 87% !important;
+}
+
+.margin{
+    padding-left: 300px !important;
+}
+.carousel img{
+    width: 220px !important;
+    height: 320px !important;
+    position: absolute;
+    top: 50%;
+    TRANSFORM: TRANSLATEY(-50%);
+}
+
+#lista .card-panel img{
+    width: 100%;
+    height: 250px;
+}
+
+#search, #search:focus{
+    border-bottom: 1px solid #fff !important;
+    color: #fff;
+    /* -webkit-box-shadow: 0 1px 0 0 #26a69a; */
+    box-shadow: 0 1px 0 0 #fff !important;
+
+}
+nav i{
+    color: #fff !important;
+}
+
+.search-container{
+    max-width: 800px;
+}
+
+.form-name{
+    margin-top: 0px !important;
+}
+
+footer{
+    margin-top: 10px;
+}
+
+@media screen and (max-width: 992px){
+    .margin{
+        padding: 0 !important;
+    }
+
+    .carousel{
+        width: 90%;
+        right: 0;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (min-width: 992px){
+    .link-mobile{
+        display: none;
+    }
+}

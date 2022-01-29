@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>{% block title %}{% endblock %}</title>
+    {% block head %}
+    {% endblock %}
+</head>
+<body class=" grey darken-3">
+    <div class="margin">
+      <nav class="grey darken-4">
+          <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <div class="nav-wrapper">
+            {% block search %}
+            {% endblock%}
+            
+            <ul id="nav-mobile" class=" left hide-on-med-and-down">
+              <li>
+                <a href="{% url 'crud:listarJogos' %}">Listar Jogos</a>
+              </li>
+              <li>
+                <a class="active" href="{% url 'crud:listarCategorias' %}">Listar Categorias</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      
+    
+    </div>
+    <ul id="slide-out" class="sidenav sidenav-fixed">
+      <li><a class="logo-container valign-wrapper" href="{% url 'crud:listarJogos' %}"><i class="material-icons">videogame_asset</i><span>GAME GALERY</span></a></li>
+
+      <li class="link-mobile"><a href="{% url 'crud:listarJogos' %}"><i class="material-icons">gamepad</i>Listar Jogos</a></li>
+      <li class="link-mobile"><a class="active" href="{% url 'crud:listarCategorias' %}"><i class="material-icons">filter_none</i>Listar Categorias</a></li>
+      <li><a href="{% url 'crud:cadastrarJogo' %}"><i class="material-icons">add</i>Adicionar Jogo</a></li>
+      <li><div class="divider"></div></li>
+      <li><a href="{% url 'crud:cadastrarCategoria' %}"><i class="material-icons">add_to_photos</i>Adicionar Categoria</a></li>
+      <li><div class="divider"></div></li>
+        {% block categoria %}
+        {% endblock %}
+      </ul>
+    {% block content %}
+    {% endblock %}
+    <div class="margin">
+      <footer class="page-footer grey darken-4">
+        <div class="container">
+          <div class="row">
+            <div class="col l6 s12">
+              <h5 class="white-text">Footer Content</h5>
+              <p class="grey-text text-lighten-4">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rem, quo placeat neque rerum consequuntur maxime non optio provident quisquam minus.</p>
+            </div>
+            <div class="col l4 offset-l2 s12">
+              <h5 class="white-text">Links</h5>
+              <ul>
+                <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer-copyright">
+          <div class="container">
+          © 2021 by Gustavo Henrique 
+          <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+</div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  {% block scripts %}
+  {% endblock %}
+  <script>
+    $(document).ready(function(){
+      $('.sidenav').sidenav();
+      $('.collapsible').collapsible();
+      $('.collapsible').collapsible('open');
+      $('.tabs').tabs();
+  });
+  </script>
+</body>
+</html>

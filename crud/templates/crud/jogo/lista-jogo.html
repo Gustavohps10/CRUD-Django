@@ -1,0 +1,113 @@
+{% extends 'crud/base.html' %}
+{% load static %}
+
+{% block title %} 
+    {% if categoria %}
+        {{categoria.nome}}
+    {% else %}
+        Jogos
+    {% endif %}
+{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+{% endblock %}
+
+{% block search %}
+<div class="search-container right">
+    <div class="row">
+        <form action="." method="GET" class="col s12">
+        <div class="row">
+            <div class="input-field col s8">
+            <i class="material-icons prefix active">search</i>
+            <input class="active" id="search" name="search" placeholder="Buscar" type="text">
+            </div>
+            <div class="input-field col s2">
+            <button class="btn" type="submit">BUSCAR</button>
+            </div>
+        </div>
+        </form>
+    </div>
+  </div>
+{% endblock %}
+
+{% block categoria %}
+<ul class="collapsible">
+    <li>
+      <div class="collapsible-header"><i class="material-icons">featured_play_list</i>Categorias</div>
+      <div class="collapsible-body">
+        <ul>
+            <li {% if not categoria %} class="selected" {% endif %}>
+                <a href="{% url 'crud:listarJogos'%}">Todos</a>
+            </li>
+            {% for c in categorias %}
+                <li {% if categoria.rotulo == c.rotulo %} class="selected" {% endif %}>
+                    <a href="{{ c.get_absolute_url }}">{{c.nome}}</a>
+                </li>
+            {% endfor %}
+        </ul>
+      </div>
+    </li>
+  </ul>
+  <li><div class="divider"></div></li>
+{% endblock %}
+
+{% block content %}
+
+<div class="margin">
+{% if not categoria and not result %}
+  <div class="carousel">
+    {% for jogo in jogosLimit %}
+    <a class="carousel-item" href="{{jogo.get_absolute_url}}"><img src="
+        {% if jogo.imagem %}
+            {{ jogo.imagem.url }} 
+        {% else %} 
+            {% static 'img/no_image.jpg' %}
+        {% endif %}"></a>
+    {% endfor %}
+</div>
+{% else %}
+    {% if result and not categoria %}
+<div class=" container">
+    <h4>
+        Resultados para "{{result}}"
+    </h4>
+</div>
+    {% endif %}
+{% endif %}
+
+
+<div class=" container">
+    <h4>
+    {% if categoria %}
+        {{categoria.nome}}
+        {% if result %}
+         /  Resultados para "{{result}}"
+        {% endif %}
+    {% endif %}
+    </h4>
+    <div id="lista">
+        {% for jogo in jogos %}
+        <div class="card-panel lighten-2">
+                <a href="{{jogo.get_absolute_url}}">
+                    <img src="
+                    {% if jogo.imagem %}
+                        {{ jogo.imagem.url }} 
+                    {% else %} 
+                        {% static 'img/no_image.jpg' %}
+                    {% endif %}">
+                </a>
+                <br>
+                {{jogo.nome}}
+            </div>  
+        {% endfor %}
+    </div>
+</div>
+    
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> 
+<script>$('.carousel').carousel();</script>
+{% endblock %}
